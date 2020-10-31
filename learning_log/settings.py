@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '0&!&x)+=bhx##-93tyj-9l7fy5_k&-it(51)70@q0p*c2nlox%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-# Leave empty if 'DEBUG = True'
-ALLOWED_HOSTS = ['.localhost']
+# Leave empty if 'DEBUG = True', '.localhost' if false
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -134,3 +134,8 @@ LOGIN_URL = 'users:login'
 # Heroku settings
 import django_heroku
 django_heroku.settings(locals())
+
+if os.environ.get('DEBUG') == 'TRUE':
+    DEBUG = True
+elif os.environ.get('DEBUG') == 'FALSE':
+    DEBUG = False
